@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+
+# Node
+node_modules/
+dist/
+build/
+coverage/
+.next/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Temporary and caches
+*.tmp
+*.log
+.cache/
+.ipynb_checkpoints/
+
+# Large local artifacts (review before tracking)
+*.zip
+*.7z
+*.rar
+*.h5
+*.keras
+*.pt
+*.pth
+*.onnx
+*.ckpt
+*.safetensors
