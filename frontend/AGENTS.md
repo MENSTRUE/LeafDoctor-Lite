@@ -1,9 +1,3 @@
-# Frontend Agent Instructions
+# Frontend agent rules
 
-Build against documented and tested backend contracts.
-Never hardcode fake predictions as real inference output.
-Implement input validation and accessible UI states.
-Use responsive layouts and clear language.
-Provide an explicit disclaimer about preliminary screening.
-Do not expose private credentials in browser code.
-Test real backend integration before claiming completion.
+Inherit [root AGENTS](../AGENTS.md). Use the real typed API contract in `src/types/prediction.ts` and `src/services/api.ts`. Do not fabricate inference. Preserve responsive upload-preview-analyze-display-export behavior and clear AI uncertainty disclaimers. `#analysis`, `#how-it-works`, `#history`, `#responsible` are anchors, **not** routed pages. History is session-only, not a persistent database. Track accessibility, keyboard/drag-drop, loading, error and empty states. Confirm user action actually works in browser, not merely compiles. Run `npm ci`, `npm run build` and manual API-connected smoke tests before claiming success. Avoid embedding secrets or changing the root structure; do not commit node_modules/dist/cache or dated backup `.tsx` files.

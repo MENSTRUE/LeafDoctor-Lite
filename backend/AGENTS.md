@@ -1,10 +1,3 @@
-# Backend Agent Instructions
+# Backend agent rules
 
-Inspect the verified model card before implementing inference.
-Match model input shape, normalization, and class ordering.
-Validate file type, size, decoding, and malformed inputs.
-Return defined API schemas and explicit error responses.
-Avoid exposing sensitive internal filesystem paths.
-Write tests for loading, prediction, and invalid requests.
-Never claim API readiness without executed tests.
-Do not create placeholder endpoints that misrepresent status.
+Inherit [root AGENTS](../AGENTS.md). Do not modify the 38-class inference recipe or trusted checkpoint contract without verifying provenance and re-running regression tests. Keep `app/api/routes/`, `app/core/`, `app/inference/`, `app/schemas/`, `app/services/`, `tests/` modular. For POST `/api/v1/predict`, enforce MIME and decoded-image constraints; never persist uploaded images by accident. `/health` is observational and `/ready` performs model initialization. Strictly validate model state dictionary, no fake predictions. Maintain explicit 4xx/5xx response behavior. Execute tests from `backend/` with `python -m pytest -v`, test `/ready` with real trusted weights and compare model label order. Separate tested and untested claims in documentation; preserve the original source files, no destructive rewrite. Never commit `.venv`, model weights, credentials or sensitive user images.
