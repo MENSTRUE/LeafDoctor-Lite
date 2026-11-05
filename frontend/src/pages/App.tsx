@@ -19,7 +19,13 @@ export default function App() {
   const [error, setError] = useState('');
   const [pending, setPending] = useState(false);
   const [dragging, setDragging] = useState(false);
-  const [history, setHistory] = useState<HistoryItem[]>([]);
+  const [history, setHistory] = useState<HistoryItem[]>(() => {
+    try {
+      const saved = JSON.parse(sessionStorage.getItem('leafdoctor-history') || '[]');
+      return Array.isArray(saved) ? saved.slice(0, 10) : [];
+    } catch { return []; }
+  });
+  const [activeSection, setActiveSection] = useState('analysis');
   const [mobileNav, setMobileNav] = useState(false);
   const uploadRef = useRef<HTMLInputElement>(null);
   const abortRef = useRef<AbortController | null>(null);
@@ -31,6 +37,37 @@ export default function App() {
     return () => controller.abort();
   }, []);
   useEffect(() => () => { if (previewRef.current) URL.revokeObjectURL(previewRef.current); abortRef.current?.abort(); }, []);
+
+  useEffect(() => {
+    try {
+      sessionStorage.setItem('leafdoctor-history', JSON.stringify(history));
+    } catch { /* Storage unavailable */ }
+  }, [history]);
+
+  const navigate = (id: string) => {
+    setActiveSection(id);
+    setMobileNav(false);
+    window.history.replaceState(null, '', '#' + id);
+    document.getElementById(id)?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
+  };
+
+  useEffect(() => {
+    const syncHash = () => {
+      const id = window.location.hash.slice(1);
+      if (['analysis', 'how-it-works', 'history', 'responsible'].includes(id)) {
+        setActiveSection(id);
+        requestAnimationFrame(() => {
+          document.getElementById(id)?.scrollIntoView({ block: 'start' });
+        });
+      }
+    };
+    syncHash();
+    window.addEventListener('hashchange', syncHash);
+    return () => window.removeEventListener('hashchange', syncHash);
+  }, []);
 
   const selectFile = useCallback((candidate?: File) => {
     if (!candidate) return;
@@ -56,7 +93,7 @@ export default function App() {
     try {
       const data = await predictImage(file, controller.signal);
       setResult(data);
-      setHistory(old => [{name: file.name, time: new Date().toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'}), label: readable(data.prediction.label), confidence: data.prediction.confidence}, ...old].slice(0, 5));
+      setHistory(old => [{name: file.name, time: new Date().toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'}), label: readable(data.prediction.label), confidence: data.prediction.confidence}, ...old].slice(0, 10));
       setServiceError(false);
       checkHealth().then(setHealth).catch(() => {});
     } catch (e) {
@@ -73,12 +110,15 @@ export default function App() {
   return <div className="app-shell">
     <aside className="sidebar">
       <a className="brand" href="#top"><span className="brand-icon"><Leaf size={23} strokeWidth={2.6}/></span><span className="brand-name">leafdoctor<span className="brand-period">.</span><small>lite</small></span></a>
-      <div className="sidebar-group"><div className="sidebar-label">WORKSPACE</div><a href="#analysis" className="nav-link active"><ScanSearch size={18}/> Leaf analysis <span className="active-dot"/></a><a href="#how-it-works" className="nav-link"><BookOpen size={18}/> How it works</a><a href="#history" className="nav-link"><ClipboardList size={18}/> Recent activity</a></div>
-      <div className="sidebar-group"><div className="sidebar-label">RESOURCES</div><a href="#responsible" className="nav-link"><ShieldCheck size={18}/> Responsible AI</a><a href="https://github.com/MENSTRUE/LeafDoctor-Lite" target="_blank" rel="noreferrer" className="nav-link"><Github size={18}/> GitHub repository</a></div>
+      <div className="sidebar-group"><div className="sidebar-label">WORKSPACE</div><a href="#analysis" onClick={(e) => { e.preventDefault(); navigate("analysis"); }} className={`nav-link ${activeSection === "analysis" ? "active" : ""}`}><ScanSearch size={18}/> Leaf analysis <span className="active-dot"/></a><a href="#how-it-works" onClick={(e) => { e.preventDefault(); navigate("how-it-works"); }} className={`nav-link ${activeSection === "how-it-works" ? "active" : ""}`}><BookOpen size={18}/> How it works</a><a href="#history" onClick={(e) => { e.preventDefault(); navigate("history"); }} className={`nav-link ${activeSection === "history" ? "active" : ""}`}><ClipboardList size={18}/> Recent activity</a></div>
+      <div className="sidebar-group"><div className="sidebar-label">RESOURCES</div><a href="#responsible" onClick={(e) => { e.preventDefault(); navigate("responsible"); }} className={`nav-link ${activeSection === "responsible" ? "active" : ""}`}><ShieldCheck size={18}/> Responsible AI</a><a href="https://github.com/MENSTRUE/LeafDoctor-Lite" target="_blank" rel="noreferrer" className="nav-link"><Github size={18}/> GitHub repository</a></div>
       <div className="sidebar-bottom"><div className="sidebar-callout"><span className="mini-icon"><Sprout size={19}/></span><strong>Built for better decisions</strong><p>Early visual screening to support farmers and plant health experts.</p><span>DAY 31 / 100 <ChevronRight size={13}/></span></div><div className="sidebar-footer"><span className="avatar">LD</span><span>LeafDoctor Research<small>Computer vision project</small></span><span className="footer-dots">•••</span></div></div>
     </aside>
     <div className="main-column" id="top">
-      <header className="topbar"><div className="topbar-left"><button className="mobile-menu" aria-label="Toggle navigation" onClick={() => setMobileNav(!mobileNav)}><Menu size={20}/></button><span className="breadcrumb">Workspace <ChevronRight size={14}/> <strong>Leaf analysis</strong></span></div><div className="topbar-right"><span className={`status-pill ${health?.model_ready ? 'online' : 'standby'}`}><i/>{health?.model_ready ? 'Model ready' : serviceError ? 'API offline' : 'Model not loaded'}</span><span className="topbar-divider"/><span className="research-tag"><FlaskConical size={15}/> Research preview</span></div></header>
+      <header className="topbar"><div className="topbar-left"><button className="mobile-menu" aria-label="Toggle navigation" onClick={() => setMobileNav(!mobileNav)}><Menu size={20}/></button><span className="breadcrumb">Workspace <ChevronRight size={14}/> <strong>{activeSection === 'analysis' ? 'Leaf analysis' :
+      activeSection === 'how-it-works' ? 'How it works' :
+      activeSection === 'history' ? 'Recent activity' :
+      'Responsible AI'}</strong></span></div><div className="topbar-right"><span className={`status-pill ${health?.model_ready ? 'online' : 'standby'}`}><i/>{health?.model_ready ? 'Model ready' : serviceError ? 'API offline' : 'Model not loaded'}</span><span className="topbar-divider"/><span className="research-tag"><FlaskConical size={15}/> Research preview</span></div></header>
       {mobileNav && <nav className="mobile-nav"><a href="#analysis" onClick={() => setMobileNav(false)}>Leaf analysis</a><a href="#how-it-works" onClick={() => setMobileNav(false)}>How it works</a><a href="#history" onClick={() => setMobileNav(false)}>Recent activity</a></nav>}
       <main className="page-content">
         <div className="hero-strip"><span className="eyebrow"><span className="eyebrow-dot"/> AGRICULTURAL INTELLIGENCE <span className="slash">/</span> DAY 31 OF 100</span><h1>Healthier plants start<br/>with <em>better insight.</em></h1><p>Understand visible leaf conditions in seconds. Upload a photo and get AI-assisted screening results you can explore with confidence and care.</p><div className="hero-tags"><span><CheckCircle2 size={15}/> 38 visual classes</span><span><Activity size={15}/> Confidence insights</span><span><ShieldCheck size={15}/> Responsible screening</span></div><div className="hero-leaf"><Leaf size={154} strokeWidth={0.85}/><Leaf size={94} strokeWidth={0.8}/></div></div>
