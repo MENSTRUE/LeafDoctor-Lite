@@ -1,42 +1,199 @@
-# Python
+
+# ============================================================
+# LEAFDOCTOR LITE — DAY 31/100
+# GitHub Portfolio | AI/ML | FastAPI | React
+# ============================================================
+
+# ============================================================
+# PYTHON — CACHE & ENVIRONMENT
+# ============================================================
 __pycache__/
 *.py[cod]
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
+.pytype/
+.hypothesis/
+
 .venv/
 venv/
+env/
+ENV/
+.python-version
+
+*.egg-info/
+.eggs/
+
+# ============================================================
+# SECRETS & ENVIRONMENT VARIABLES
+# ============================================================
 .env
 .env.*
 !.env.example
 
-# Node
+*.pem
+*.key
+*.p12
+*.pfx
+credentials.json
+secrets.json
+service-account*.json
+kaggle.json
+
+# ============================================================
+# NODE.JS — LARGE DEPENDENCIES
+# ============================================================
 node_modules/
+.pnpm-store/
+.npm/
+.yarn/cache/
+.yarn/unplugged/
+.pnp.*
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ============================================================
+# FRONTEND — GENERATED BUILD FILES
+# ============================================================
 dist/
+dist-ssr/
 build/
-coverage/
 .next/
+.nuxt/
+.output/
+.vite/
+.parcel-cache/
+.turbo/
+coverage/
+playwright-report/
 
-# Editors / OS
-.vscode/
-.idea/
-.DS_Store
-Thumbs.db
-
-# Temporary and caches
-*.tmp
-*.log
-.cache/
+# ============================================================
+# JUPYTER / KAGGLE
+# ============================================================
 .ipynb_checkpoints/
+.ipython/
+.kaggle/
 
-# Large local artifacts (review before tracking)
+# Original notebooks (.ipynb) ARE TRACKED
+
+# ============================================================
+# MACHINE LEARNING — LARGE MODEL WEIGHTS
+# ============================================================
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.onnx
+*.tflite
+*.h5
+*.hdf5
+*.keras
+*.pb
+*.weights
+
+# Small model configs, class mappings, JSON manifests,
+# model cards and experiment metrics ARE TRACKED.
+
+# ============================================================
+# LARGE DATASET / TRAINING ARRAYS
+# ============================================================
+*.npy
+*.npz
+*.tfrecord
+*.tfrecords
+*.parquet
+*.arrow
+*.feather
+*.sqlite
+*.sqlite3
+
+# Raw image datasets are kept outside the repository.
+# Small real examples inside assets/examples/ are allowed.
+
+# ============================================================
+# ARCHIVES
+# ============================================================
 *.zip
 *.7z
 *.rar
-*.h5
-*.keras
-*.pt
-*.pth
-*.onnx
-*.ckpt
-*.safetensors
+*.tar
+*.tar.gz
+*.tgz
+*.gz
+*.bz2
+*.xz
+
+# ============================================================
+# TRAINING LOGS / GENERATED CACHE
+# ============================================================
+lightning_logs/
+wandb/
+mlruns/
+mlartifacts/
+tensorboard/
+runs/
+events.out.tfevents.*
+
+.cache/
+tmp/
+temp/
+*.tmp
+*.bak
+*.swp
+*.swo
+
+# ============================================================
+# BACKEND RUNTIME
+# ============================================================
+uploads/
+temp_uploads/
+*.pid
+*.sock
+
+# ============================================================
+# LOG FILES
+# ============================================================
+*.log
+logs/
+
+# ============================================================
+# EDITORS
+# ============================================================
+.vscode/
+.idea/
+
+# ============================================================
+# OPERATING SYSTEM
+# ============================================================
+.DS_Store
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# ============================================================
+# IMPORTANT — KEEP PORTFOLIO EVIDENCE
+# ============================================================
+# DO NOT IGNORE:
+#
+# README.md / AGENTS.md / LICENSE
+# .env.example
+# requirements.txt / package.json / lockfiles
+# notebooks/*.ipynb
+# models/*.md / models/*.json
+# reports/*.md / reports/*.csv / reports/*.json
+# assets/plots/
+# assets/examples/
+# assets/screenshots/
+# assets/diagrams/
+# backend/
+# frontend/src/
+# docs/
+# scripts/
+# .gitkeep
+#
+# Large verified model files can be distributed
+# using Git LFS or GitHub Releases.
+# ============================================================
