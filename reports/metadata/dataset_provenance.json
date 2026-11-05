@@ -1,0 +1,59 @@
+{
+  "generated_utc": "2026-11-04T13:57:14.530610+00:00",
+  "kaggle_input": "/kaggle/input/datasets/loliwibu/leafdoctor-dataset",
+  "sources": {
+    "PlantVillage": "https://huggingface.co/datasets/mohanty/PlantVillage",
+    "PlantDoc": "https://github.com/pratikkayal/PlantDoc-Dataset"
+  },
+  "license_notes": "Check license terms at original sources before redistribution. Original images excluded from output archive.",
+  "split_counts": {
+    "pv_train": 38360,
+    "pv_val": 5231,
+    "pv_test": 10709,
+    "doc_train": 1497,
+    "doc_val": 327,
+    "doc_test_mapped": 182,
+    "doc_test_full": 236,
+    "pv_train_removed_test_overlap": 5,
+    "doc_train_removed_test_overlap": 2,
+    "doc_rare_excluded": 2,
+    "cross_source_train_val_duplicates_removed": 0,
+    "doc_conflicting_label_groups_quarantined": 9,
+    "doc_conflicting_source_images_quarantined": 18,
+    "doc_conflicting_test_images_quarantined": 8,
+    "cross_source_conflicting_train_images_removed": 0
+  },
+  "conflict_quarantine": {
+    "conflicting_sha256_groups": 9,
+    "quarantined_source_images": 18,
+    "quarantined_train_images": 10,
+    "quarantined_test_images": 8,
+    "policy": "exclude entire conflicting SHA256 groups (no majority-vote relabel)",
+    "source_of_labels": "original PlantDoc path mapping, not model predictions"
+  },
+  "config": {
+    "seed": 42,
+    "batch": 64,
+    "workers": 2,
+    "pv_head_epochs": 2,
+    "pv_fine_epochs": 5,
+    "adapt_epochs": 8,
+    "adapt_patience": 3,
+    "plantdoc_sample_share": 0.4,
+    "image_size": 224,
+    "base_lr": 0.00015,
+    "adapt_lr": 6e-05,
+    "weight_decay": 0.0001,
+    "min_doc_val_per_class": 1,
+    "doc_val_fraction": 0.18,
+    "enable_torchscript_export": true
+  },
+  "python": "3.13.16 (main, Oct  1 2026, 15:40:24) [GCC 13.3.0]",
+  "torch": "2.11.0+cu130",
+  "torchvision": "0.26.0+cu130",
+  "exact_hash_leakage_checked": true,
+  "perceptual_duplicates_checked": false,
+  "V1_historical_external_accuracy": 0.2606060606060606,
+  "V1_historical_subset_size": 165,
+  "V1_not_directly_comparable_with_changed_mapping": true
+}

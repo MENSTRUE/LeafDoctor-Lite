@@ -1,0 +1,56 @@
+source_split,label_original,mapped_class,mapping_quality,n_images
+test,Apple Scab Leaf,Apple___Apple_scab,explicit_condition,10
+test,Apple leaf,Apple___healthy,weak_healthy_proxy,9
+test,Apple rust leaf,Apple___Cedar_apple_rust,explicit_condition,10
+test,Bell_pepper leaf,"Pepper,_bell___healthy",weak_healthy_proxy,8
+test,Bell_pepper leaf spot,"Pepper,_bell___Bacterial_spot",explicit_condition,9
+test,Blueberry leaf,,not_mapped,11
+test,Cherry leaf,,not_mapped,10
+test,Corn Gray leaf spot,Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot,explicit_condition,4
+test,Corn leaf blight,,not_mapped,12
+test,Corn rust leaf,Corn_(maize)___Common_rust_,explicit_condition,10
+test,Peach leaf,Peach___healthy,weak_healthy_proxy,9
+test,Potato leaf early blight,Potato___Early_blight,explicit_condition,8
+test,Potato leaf late blight,Potato___Late_blight,explicit_condition,8
+test,Raspberry leaf,,not_mapped,7
+test,Soyabean leaf,,not_mapped,8
+test,Squash Powdery mildew leaf,Squash___Powdery_mildew,explicit_condition,6
+test,Strawberry leaf,Strawberry___healthy,weak_healthy_proxy,8
+test,Tomato Early blight leaf,Tomato___Early_blight,explicit_condition,9
+test,Tomato Septoria leaf spot,Tomato___Septoria_leaf_spot,explicit_condition,11
+test,Tomato leaf,Tomato___healthy,weak_healthy_proxy,8
+test,Tomato leaf bacterial spot,Tomato___Bacterial_spot,explicit_condition,9
+test,Tomato leaf late blight,Tomato___Late_blight,explicit_condition,10
+test,Tomato leaf mosaic virus,Tomato___Tomato_mosaic_virus,explicit_condition,10
+test,Tomato leaf yellow virus,Tomato___Tomato_Yellow_Leaf_Curl_Virus,explicit_condition,6
+test,Tomato mold leaf,Tomato___Leaf_Mold,explicit_condition,6
+test,grape leaf,Grape___healthy,weak_healthy_proxy,12
+test,grape leaf black rot,Grape___Black_rot,explicit_condition,8
+train,Apple Scab Leaf,Apple___Apple_scab,explicit_condition,83
+train,Apple leaf,Apple___healthy,weak_healthy_proxy,82
+train,Apple rust leaf,Apple___Cedar_apple_rust,explicit_condition,78
+train,Bell_pepper leaf,"Pepper,_bell___healthy",weak_healthy_proxy,53
+train,Bell_pepper leaf spot,"Pepper,_bell___Bacterial_spot",explicit_condition,62
+train,Blueberry leaf,,not_mapped,104
+train,Cherry leaf,,not_mapped,47
+train,Corn Gray leaf spot,Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot,explicit_condition,64
+train,Corn leaf blight,,not_mapped,179
+train,Corn rust leaf,Corn_(maize)___Common_rust_,explicit_condition,106
+train,Peach leaf,Peach___healthy,weak_healthy_proxy,102
+train,Potato leaf early blight,Potato___Early_blight,explicit_condition,108
+train,Potato leaf late blight,Potato___Late_blight,explicit_condition,97
+train,Raspberry leaf,,not_mapped,112
+train,Soyabean leaf,,not_mapped,57
+train,Squash Powdery mildew leaf,Squash___Powdery_mildew,explicit_condition,124
+train,Strawberry leaf,Strawberry___healthy,weak_healthy_proxy,88
+train,Tomato Early blight leaf,Tomato___Early_blight,explicit_condition,79
+train,Tomato Septoria leaf spot,Tomato___Septoria_leaf_spot,explicit_condition,140
+train,Tomato leaf,Tomato___healthy,weak_healthy_proxy,55
+train,Tomato leaf bacterial spot,Tomato___Bacterial_spot,explicit_condition,101
+train,Tomato leaf late blight,Tomato___Late_blight,explicit_condition,101
+train,Tomato leaf mosaic virus,Tomato___Tomato_mosaic_virus,explicit_condition,44
+train,Tomato leaf yellow virus,Tomato___Tomato_Yellow_Leaf_Curl_Virus,explicit_condition,70
+train,Tomato mold leaf,Tomato___Leaf_Mold,explicit_condition,85
+train,Tomato two spotted spider mites leaf,Tomato___Spider_mites Two-spotted_spider_mite,explicit_condition,2
+train,grape leaf,Grape___healthy,weak_healthy_proxy,57
+train,grape leaf black rot,Grape___Black_rot,explicit_condition,56

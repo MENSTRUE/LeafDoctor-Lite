@@ -1,0 +1,8 @@
+{
+  "conflicting_sha256_groups": 9,
+  "quarantined_source_images": 18,
+  "quarantined_train_images": 10,
+  "quarantined_test_images": 8,
+  "policy": "exclude entire conflicting SHA256 groups (no majority-vote relabel)",
+  "source_of_labels": "original PlantDoc path mapping, not model predictions"
+}

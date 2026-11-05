@@ -1,0 +1,17 @@
+{
+  "seed": 42,
+  "batch": 64,
+  "workers": 2,
+  "pv_head_epochs": 2,
+  "pv_fine_epochs": 5,
+  "adapt_epochs": 8,
+  "adapt_patience": 3,
+  "plantdoc_sample_share": 0.4,
+  "image_size": 224,
+  "base_lr": 0.00015,
+  "adapt_lr": 6e-05,
+  "weight_decay": 0.0001,
+  "min_doc_val_per_class": 1,
+  "doc_val_fraction": 0.18,
+  "enable_torchscript_export": true
+}

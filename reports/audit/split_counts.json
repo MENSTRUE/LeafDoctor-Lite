@@ -1,0 +1,17 @@
+{
+  "pv_train": 38360,
+  "pv_val": 5231,
+  "pv_test": 10709,
+  "doc_train": 1497,
+  "doc_val": 327,
+  "doc_test_mapped": 182,
+  "doc_test_full": 236,
+  "pv_train_removed_test_overlap": 5,
+  "doc_train_removed_test_overlap": 2,
+  "doc_rare_excluded": 2,
+  "cross_source_train_val_duplicates_removed": 0,
+  "doc_conflicting_label_groups_quarantined": 9,
+  "doc_conflicting_source_images_quarantined": 18,
+  "doc_conflicting_test_images_quarantined": 8,
+  "cross_source_conflicting_train_images_removed": 0
+}
